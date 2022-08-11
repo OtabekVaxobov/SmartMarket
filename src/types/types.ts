@@ -1,6 +1,7 @@
-import { Method } from 'axios';
 
-export interface Ioptions {
-  method: Method;
-  url: string;
+export interface Idata {
+  body: string
+  id: number
+  title: string
+  userId: number
 }

@@ -1,27 +1,53 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Idata } from '../types/types';
 
-const [data, setData] = useState(null);
-const [error, setError] = useState(null);
+
 
 function Fetcher() {
-  fetch('https://api.github.com/emojis')
-    .then(async (response) => {
-      const data = await response.json();
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/posts?_limit=8`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `This is an HTTP error: The status is ${response.status}`
+          );
+        }
+        return response.json();
+      })
+      .then((actualData) => {
+        setData(actualData);
+        console.log(actualData)
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setData(null);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
-      if (!response.ok) {
-        const error = (data && data.message) || response.statusText;
-        return Promise.reject(error);
-      }
+  return <div>
 
-      setData({ totalReactPackages: data.total });
-      console.log(data);
-    })
-    .catch((error) => {
-      setError({ errorMessage: error.toString() });
-      console.error('There was an error!', error);
-    });
-  return <div>qwe</div>;
+    <h1>API Posts</h1>
+    {loading && <div>A moment please...</div>}
+    {error && (
+      <div>{`There is a problem fetching the post data - ${error}`}</div>
+    )}
+    <ul>
+      {data &&
+        data.map(({ id, title }: Idata) => (
+          <li key={id}>
+            <h3>{title}</h3>
+          </li>
+        ))}
+    </ul>
+  </div>;
 }
 
 export default Fetcher;
