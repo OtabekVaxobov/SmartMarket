@@ -1,15 +1,32 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { Itarget } from '../types/types';
 export default function SearchBox() {
-  const [message, setMessage] = useState('');
+  const [search, setSearch] = useState('');
 
-  const handleChange = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setMessage(event.target.value);
+  const handleChange = (event: Itarget) => {
+    setSearch(event.target.value);
 
     console.log('value is:', event.target.value);
   };
+
+  // const filter = (event: Itarget) => {
+  //   const keyword = event.target.value;
+
+  //   if (keyword !== '') {
+  //     const results = USERS.filter((user) => {
+  //       return user.name.toLowerCase().startsWith(keyword.toLowerCase());
+  //       // Use the toLowerCase() method to make it case-insensitive
+  //     });
+  //     setFoundUsers(results);
+  //   } else {
+  //     setFoundUsers(USERS);
+  //     // If the text field is empty, show all users
+  //   }
+
+  //   setName(keyword);
+  // };
+
   return (
     <form className="max-w-sm px-4">
       <div className="relative">
@@ -32,9 +49,21 @@ export default function SearchBox() {
           placeholder="Search"
           className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
           onChange={handleChange}
-          value={message}
+          value={search}
         />
       </div>
     </form>
   );
 }
+function setFoundUsers(results: any) {
+  throw new Error('Function not implemented.');
+}
+
+function setName(keyword: React.SetStateAction<string>) {
+  throw new Error('Function not implemented.');
+}
+
+function USERS(USERS: any) {
+  throw new Error('Function not implemented.');
+}
+

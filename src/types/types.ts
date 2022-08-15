@@ -5,3 +5,8 @@ export interface Idata {
   title: string
   userId: number
 }
+export interface Itarget {
+
+  target: { value: React.SetStateAction<string> };
+
+}
