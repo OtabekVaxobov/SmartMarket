@@ -9,7 +9,7 @@ function Fetcher() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts?_limit=8`)
+    fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(
