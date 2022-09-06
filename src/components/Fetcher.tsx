@@ -8,6 +8,7 @@ function Fetcher() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then((response) => {
@@ -20,7 +21,7 @@ function Fetcher() {
       })
       .then((actualData) => {
         setData(actualData);
-        console.log(actualData)
+        //console.log(actualData)
         setError(null);
       })
       .catch((err) => {
@@ -32,8 +33,9 @@ function Fetcher() {
       });
   }, []);
 
-  return <div>
 
+
+  return <div>
     <h1>API Posts</h1>
     {loading && <div>A moment please...</div>}
     {error && (
@@ -49,5 +51,9 @@ function Fetcher() {
     </ul>
   </div>;
 }
+
+
+
+
 
 export default Fetcher;
