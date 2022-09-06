@@ -10,25 +10,10 @@ export default function SearchBox() {
     console.log('value is:', event.target.value);
   };
 
-  // const filter = (event: Itarget) => {
-  //   const keyword = event.target.value;
 
-  //   if (keyword !== '') {
-  //     const results = USERS.filter((user) => {
-  //       return user.name.toLowerCase().startsWith(keyword.toLowerCase());
-  //       // Use the toLowerCase() method to make it case-insensitive
-  //     });
-  //     setFoundUsers(results);
-  //   } else {
-  //     setFoundUsers(USERS);
-  //     // If the text field is empty, show all users
-  //   }
-
-  //   setName(keyword);
-  // };
 
   return (
-    <form className="max-w-sm px-4">
+    <form className="max-w-sm px-4 m-10">
       <div className="relative">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -54,16 +39,5 @@ export default function SearchBox() {
       </div>
     </form>
   );
-}
-function setFoundUsers(results: any) {
-  throw new Error('Function not implemented.');
-}
-
-function setName(keyword: React.SetStateAction<string>) {
-  throw new Error('Function not implemented.');
-}
-
-function USERS(USERS: any) {
-  throw new Error('Function not implemented.');
 }
 
