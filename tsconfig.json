@@ -1,17 +1,13 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    "target": "es6",
+    "target": "esnext",
     "module": "commonjs",
+    "lib": ["es2018", "dom"],
     "moduleResolution": "node",
-    "noResolve": false,
-    "noImplicitAny": true,
-    "removeComments": true,
-    "sourceMap": true,
-    "allowJs": true,
+    "esModuleInterop": true,
     "jsx": "react"
   },
-  "exclude": [
-    "./node_modules/**/*"
-  ]
+  "exclude": ["./node_modules/**/*", "./.yarn/"],
+  "extends": "./tsconfig"
 }

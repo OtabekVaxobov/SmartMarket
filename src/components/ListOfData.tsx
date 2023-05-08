@@ -1,5 +1,5 @@
-import * as React from 'react';
-import Fetcher from './Fetcher';
+import React from "react";
+import Fetcher from "./Fetcher";
 
 export default function ListOfData() {
   return (

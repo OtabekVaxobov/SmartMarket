@@ -1,8 +1,6 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { Idata } from '../types/types';
-
-
+import React from "react";
+import { useState, useEffect } from "react";
+import { Idata } from "../types/types";
 
 function Fetcher() {
   const [data, setData] = useState(null);
@@ -33,27 +31,23 @@ function Fetcher() {
       });
   }, []);
 
-
-
-  return <div>
-    <h1>API Posts</h1>
-    {loading && <div>A moment please...</div>}
-    {error && (
-      <div>{`There is a problem fetching the post data - ${error}`}</div>
-    )}
-    <ul>
-      {data &&
-        data.map(({ id, title }: Idata) => (
-          <li key={id}>
-            <h3>{title}</h3>
-          </li>
-        ))}
-    </ul>
-  </div>;
+  return (
+    <div>
+      <h1>API Posts</h1>
+      {loading && <div>A moment please...</div>}
+      {error && (
+        <div>{`There is a problem fetching the post data - ${error}`}</div>
+      )}
+      <ul>
+        {data &&
+          data.map(({ id, title }: Idata) => (
+            <li key={id}>
+              <h3>{title}</h3>
+            </li>
+          ))}
+      </ul>
+    </div>
+  );
 }
-
-
-
-
 
 export default Fetcher;

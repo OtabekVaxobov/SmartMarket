@@ -1,16 +1,14 @@
-import * as React from 'react';
-import { useState } from 'react';
-import { Itarget } from '../types/types';
+import React from "react";
+import { useState } from "react";
+import { Itarget } from "../types/types";
 export default function SearchBox() {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const handleChange = (event: Itarget) => {
     setSearch(event.target.value);
 
-    console.log('value is:', event.target.value);
+    console.log("value is:", event.target.value);
   };
-
-
 
   return (
     <form className="max-w-sm px-4 m-10">
@@ -40,4 +38,3 @@ export default function SearchBox() {
     </form>
   );
 }
-
