@@ -1,15 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Itarget } from "../types/types";
-export default function SearchBox() {
-  const [search, setSearch] = useState("");
-
-  const handleChange = (event: Itarget) => {
-    setSearch(event.target.value);
-
-    console.log("value is:", event.target.value);
-  };
-
+export function SearchBox() {
   return (
     <form className="max-w-sm px-4 m-10">
       <div className="relative">
@@ -31,8 +22,6 @@ export default function SearchBox() {
           type="text"
           placeholder="Search"
           className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
-          onChange={handleChange}
-          value={search}
         />
       </div>
     </form>
