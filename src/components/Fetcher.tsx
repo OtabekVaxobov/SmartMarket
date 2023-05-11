@@ -1,14 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Idata } from "../types/types";
-
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-  QueryCache,
-} from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { Idata } from '../types/types';
 
 export function Fetcher() {
   const [data, setData] = useState(null);
@@ -55,7 +46,6 @@ export function Fetcher() {
 
     setData(updatedList);
   };
-
   return (
     <>
       {loading && <div>A moment please...</div>}
@@ -87,12 +77,6 @@ export function Fetcher() {
         </div>
       </form>
       <ul>
-        {/* {data &&
-          data.map(({ id, title }: Idata) => (
-            <li key={id}>
-              <h3>{title}</h3>
-            </li>
-          ))} */}
         {data &&
           data.map(({ id, title, body }: Idata) => (
             <div className="" key={id}>
