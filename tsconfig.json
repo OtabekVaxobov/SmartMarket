@@ -9,11 +9,7 @@
     "jsx": "react",
     "sourceMap": true
   },
-<<<<<<< Updated upstream
-  "include": ["src/**/*"],
+
+  "include": ["src/"],
   "exclude": ["./node_modules/**/*", "./.yarn/"]
 }
-=======
-  "exclude": ["./node_modules/**/*", "./.yarn/"]
-}
->>>>>>> Stashed changes
