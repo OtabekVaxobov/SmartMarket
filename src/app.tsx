@@ -1,15 +1,15 @@
 import * as React from "react";
-import DataFetcher from "./components/Fetcher";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const queryClient = new QueryClient({});
+import { Routes, Route } from "react-router-dom";
+import StarterPage from "./pages/StarterPage";
+import AboutPage from "./pages/AboutPage";
 
 export default function App() {
   return (
-    <div className="grid h-screen place-items-center">
-      <QueryClientProvider client={queryClient}>
-        <DataFetcher />
-      </QueryClientProvider>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<StarterPage />} />
+        <Route path="/about" element={<AboutPage />} />
+      </Routes>
+    </>
   );
 }

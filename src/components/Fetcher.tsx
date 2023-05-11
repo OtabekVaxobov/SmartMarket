@@ -10,73 +10,39 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import axios from "axios";
 
-// function Fetcher() {
-//   const [data, setData] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     fetch(`https://jsonplaceholder.typicode.com/posts`)
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(
-//             `This is an HTTP error: The status is ${response.status}`
-//           );
-//         }
-//         return response.json();
-//       })
-//       .then((actualData) => {
-//         setData(actualData);
-//         //console.log(actualData)
-//         setError(null);
-//       })
-//       .catch((err) => {
-//         setError(err.message);
-//         setData(null);
-//       })
-//       .finally(() => {
-//         setLoading(false);
-//       });
-//   }, []);
-
-//   return (
-//     <div>
-//       <h1>API Posts</h1>
-//       {loading && <div>A moment please...</div>}
-//       {error && (
-//         <div>{`There is a problem fetching the post data - ${error}`}</div>
-//       )}
-//       <ul>
-//         {data &&
-//           data.map(({ id, title }: Idata) => (
-//             <li key={id}>
-//               <h3>{title}</h3>
-//             </li>
-//           ))}
-//       </ul>
-//     </div>
-//   );
-// }
-
-// export default Fetcher;
-
-export default function DataFetcher() {
-  const { isLoading, error, data, isFetching } = useQuery({
-    queryKey: ["repoData"],
-    queryFn: () =>
-      axios
-        .get("https://jsonplaceholder.typicode.com/posts")
-        .then((res) => res.data)
-        .then(setFilteredList(data)),
-  });
-
-  const [filteredList, setFilteredList] = useState(data);
+export function Fetcher() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/posts`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `This is an HTTP error: The status is ${response.status}`
+          );
+        }
+        return response.json();
+      })
+      .then((actualData) => {
+        setData(actualData);
+        //console.log(actualData)
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setData(null);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   const filterBySearch = (event: { target: { value: any } }) => {
     // Access input value
     const query = event.target.value;
     // Create copy of item list
-    let updatedList = [...filteredList];
+    let updatedList = [...data];
 
     // Include all elements which includes the search query
     updatedList = updatedList.filter((item) => {
@@ -87,15 +53,15 @@ export default function DataFetcher() {
     });
     // Trigger render with updated values
 
-    setFilteredList(updatedList);
+    setData(updatedList);
   };
-  if (isLoading) return <>{"Loading..."}</>;
 
-  if (error) return <>{"An error has occurred: " + error}</>;
-
-  console.log({ filteredList });
   return (
     <>
+      {loading && <div>A moment please...</div>}
+      {error && (
+        <div>{`There is a problem fetching the post data - ${error}`}</div>
+      )}
       <form className="max-w-sm px-4 m-10">
         <div className="relative">
           <svg
@@ -120,13 +86,21 @@ export default function DataFetcher() {
           />
         </div>
       </form>
-      {filteredList &&
-        filteredList.map(({ id, title, body }: Idata) => (
-          <div className="" key={id}>
-            <p className="">{title}</p>
-            <p>{body}</p>
-          </div>
-        ))}
+      <ul>
+        {/* {data &&
+          data.map(({ id, title }: Idata) => (
+            <li key={id}>
+              <h3>{title}</h3>
+            </li>
+          ))} */}
+        {data &&
+          data.map(({ id, title, body }: Idata) => (
+            <div className="" key={id}>
+              <p className="">{title}</p>
+              <p>{body}</p>
+            </div>
+          ))}
+      </ul>
     </>
   );
 }
