@@ -5,7 +5,7 @@ import Footer from '../sections/Footer';
 const Layout = ({ children }) => {
   return (
     <>
-      <div className="flex flex-col justify-center items-center">
+      <div className="">
         <Header />
         <main>{children}</main>
         <Footer />
