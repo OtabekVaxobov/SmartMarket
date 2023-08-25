@@ -2,9 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Idata } from '../types/types';
 
 export function Fetcher() {
+  // const itemList = [
+  //   'Apple',
+  //   'Orange',
+  //   'Banana',
+  //   'Cherry',
+  //   'Milk',
+  //   'Peanuts',
+  //   'Butter',
+  //   'Tomato',
+  // ];
+
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filteredList, setFilteredList] = useState(null);
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then((response) => {
@@ -17,6 +29,7 @@ export function Fetcher() {
       })
       .then((actualData) => {
         setData(actualData);
+        setFilteredList(actualData);
         //console.log(actualData)
         setError(null);
       })
@@ -29,23 +42,43 @@ export function Fetcher() {
       });
   }, []);
 
-  const filterBySearch = (event: { target: { value: any } }) => {
+  const filterBySearch = (event) => {
+    if (event.target.value == '') {
+      setData(data);
+      return;
+    }
+    event.preventDefault();
     // Access input value
     const query = event.target.value;
+    let filteredList = [...data];
     // Create copy of item list
-    let updatedList = [...data];
 
     // Include all elements which includes the search query
-    updatedList = updatedList.filter((item) => {
+    filteredList = filteredList.filter((item) => {
       return (
         item.body.toLowerCase().includes(query.toLowerCase()) ||
         item.title.toLowerCase().includes(query.toLowerCase())
       );
     });
     // Trigger render with updated values
+    setFilteredList(filteredList);
 
-    setData(updatedList);
+    // Trigger render with updated values
   };
+
+  // const filterBySearch = (event) => {
+  //   // Access input value
+  //   const query = event.target.value;
+  //   // Create copy of item list
+  //   var updatedList = [...itemList];
+  //   // Include all elements which includes the search query
+  //   updatedList = updatedList.filter((item) => {
+  //     return item.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+  //   });
+  //   // Trigger render with updated values
+  //   setFilteredList(updatedList);
+  // };
+
   return (
     <>
       {loading && <div>A moment please...</div>}
@@ -78,9 +111,9 @@ export function Fetcher() {
       </form>
       <ul>
         {data &&
-          data.map(({ id, title, body }: Idata) => (
-            <div className="" key={id}>
-              <p className="">{title}</p>
+          filteredList.map(({ id, title, body }: Idata) => (
+            <div className="px-4" key={id}>
+              <p className=" bg-slate-200">{title}</p>
               <p>{body}</p>
             </div>
           ))}

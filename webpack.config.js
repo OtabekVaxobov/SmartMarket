@@ -1,12 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-  mode: "development",
-  entry: "./src/main.tsx",
-  devtool: "inline-source-map",
+  mode: 'development',
+  entry: './src/main.tsx',
+  devtool: 'inline-source-map',
   output: {
-    path: path.join(__dirname, "dist"),
-    filename: "bundle.js",
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
   devServer: {
     historyApiFallback: true,
@@ -19,26 +19,30 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader',
       },
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        use: 'ts-loader',
         exclude: /node_modules/,
       },
       {
         test: /\.css$/i,
-        include: path.resolve(__dirname, "src"),
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        include: path.resolve(__dirname, 'src'),
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: './src/index.html',
     }),
   ],
 };

@@ -3,3 +3,4 @@ node_modules
 dist
 .pnp.cjs
 .pnp.loader.mjs
+/src/assets
