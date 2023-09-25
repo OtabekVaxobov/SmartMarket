@@ -2,13 +2,13 @@ export default function Header() {
 
     return (
         <>
-            <div className="bg-yellow-600 py-4">
+            <div className=" bg-green-700 py-4">
                 <div className="container mx-auto">
                     <div className="flex flex-row">
 
                         <a href='/'>
                             <div className="px-4">
-                                <p className="text-white capitalize">Hoome</p>
+                                <p className="text-white capitalize">Home</p>
                             </div>
                         </a>
                         <a href='about'>

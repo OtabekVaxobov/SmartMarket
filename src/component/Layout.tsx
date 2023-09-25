@@ -1,5 +1,5 @@
-import React from "react";
-import Header from "./Header";
+import React, { Suspense } from "react";
+import Loading from "./Loading";
 
 // Pass the child props
 export default function Layout({ children }: {
@@ -7,9 +7,13 @@ export default function Layout({ children }: {
 }) {
     return (
         <div>
+            <Suspense fallback={<Loading />}>
+                <main className="flex flex-col justify-center content-center">
+                    {children}
+                </main>
 
-            {/* display the child prop */}
-            {children}
+
+            </Suspense>
         </div>
     );
 }

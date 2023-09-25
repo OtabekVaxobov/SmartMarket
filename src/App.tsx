@@ -5,6 +5,9 @@ import ErrorPage from "./pages/errorPage";
 import HomePage from "./pages/indexPage";
 import Header from "./component/Header";
 import ContactsPage from "./pages/contactsPage";
+import Footer from "./component/Footer";
+import { Suspense } from "react";
+import Loading from "./component/Loading";
 
 function App() {
   const router = createBrowserRouter([
@@ -30,7 +33,10 @@ function App() {
     <>
       <Layout>
         <Header />
-        <RouterProvider router={router} />
+        <Suspense fallback={<Loading />}>
+          <RouterProvider router={router} />
+        </Suspense>
+        <Footer />
         <Outlet />
       </Layout>
     </>
