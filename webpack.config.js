@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
-  entry: './src/main.tsx',
+  entry: './src/main.jsx',
   devtool: 'inline-source-map',
   output: {
     path: path.join(__dirname, 'dist'),
@@ -17,13 +17,13 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /.yarn/],
         loader: 'babel-loader',
       },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /.yarn/],
       },
       {
         test: /\.css$/i,
