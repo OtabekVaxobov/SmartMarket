@@ -1,29 +1,27 @@
-# SmartMarket
+# React + TypeScript + Vite
 
-"main" ga o'zartirish faqat pull request orqali bolishi shart!
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-"dev" branch shunday torrtiladi:
+Currently, two official plugins are available:
 
-git clone -b <branchname> <remote-repo-url>
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-yani:
+## Expanding the ESLint configuration
 
-git clone -b dev https://github.com/OtabekVaxobov/SmartMarket.git
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-tekshirish:
+- Configure the top-level `parserOptions` property like this:
 
-git branch -a
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
 
-"dev" branch - bu asosiy kod yoziladigan branch
-
-tekshirish:
-
-git branch -a
-
-yarn install / npm install
-
-npm start / yarn start
-
-npm build / yarn start
-
-
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
