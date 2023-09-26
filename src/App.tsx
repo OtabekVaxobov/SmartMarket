@@ -1,15 +1,19 @@
-import { BrowserRouter, Outlet, RouterProvider, createBrowserRouter } from "react-router-dom"
+import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Layout from "./component/Layout"
 import AboutPage from "./pages/aboutPage";
 import ErrorPage from "./pages/errorPage";
-import HomePage from "./pages/indexPage";
+
 import Header from "./component/Header";
 import ContactsPage from "./pages/contactsPage";
 import Footer from "./component/Footer";
 import { Suspense } from "react";
 import Loading from "./component/Loading";
-
+import { lazy } from 'react';
+// import HomePage from "./pages/indexPage";
+const HomePage = lazy(() => import('./pages/indexPage'));
 function App() {
+
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -37,7 +41,6 @@ function App() {
           <RouterProvider router={router} />
         </Suspense>
         <Footer />
-        <Outlet />
       </Layout>
     </>
   )

@@ -8,7 +8,8 @@ export default function Layout({ children }: {
     return (
         <div>
             <Suspense fallback={<Loading />}>
-                <main className="flex flex-col justify-center content-center">
+
+                <main className="">
                     {children}
                 </main>
 
